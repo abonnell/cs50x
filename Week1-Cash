@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <cs50.h>
+#include <math.h>
+
+int main(void) {
+    int q, d, n, p;
+    float pay;
+    do {
+        pay = get_float("Enter dollar amount to make change with: ");
+    } while (pay < 0);
+    int pay2=round(pay * 100);
+    for (q = 0; pay2 >= 25; q++) {
+        pay2 = pay2 - 25;
+    }
+    for (d = 0; pay2 >= 10; d++) {
+        pay2 = pay2 - 10;
+    }
+    for (n = 0; pay2 >= 5; n++) {
+        pay2 = pay2 - 5;
+    }
+    for (p = 0; pay2 >=1 ; p++) {
+        pay2 = pay2 - 1;
+    }
+    int y = q + d + n + p;
+    printf("%i\n", y);
+}
