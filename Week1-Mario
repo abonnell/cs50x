@@ -1,0 +1,33 @@
+#include <cs50.h>
+#include <stdio.h>
+
+int get_1_through_8 (void);
+
+int main(void)
+{
+   int H = get_1_through_8();
+   //right justifies then writes width in # then changes to next row
+    for (int h = 0; h < H; h++) {
+        //right justifies
+        for (int j = H-2; j >= h; j--) {
+            printf(" ");
+        }
+        //writes width
+        for (int w = 0; w <= h; w++) {
+            printf("#");
+        }
+        //changes row
+        printf("\n");
+    }
+}
+
+int get_1_through_8 (void)
+{
+   int n;
+    do
+    {
+        n = get_int("Input a number between 1 and 8: ");
+    }
+    while (n < 1 || n > 8);
+    return n;
+}
