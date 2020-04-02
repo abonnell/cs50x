@@ -1,0 +1,91 @@
+#include <stdio.h>
+#include <cs50.h>
+#include <math.h>
+#include <ctype.h>
+#include <string.h>
+
+int count_letters();
+int count_words();
+int count_sentences();
+
+int main(void)
+{
+    //prompt for text to calc
+    string T = get_string("Text: ");
+    
+    //count char [c]haracters in T
+    int c = count_letters(T);
+    //count int [w]ords in T
+    int w = count_words(T);
+    //count int s[entences] in T
+    int sent = count_sentences(T);
+    //averages:
+    //int L[etters, average per 100] = (c / w) * 100
+    //int S[entences, average per 100] = (s / w) * 100
+    float L = ((float) c / (float) w) * 100;
+    float S = ((float) sent / (float) w) * 100;
+    //calc index
+    float i = (0.0588 * L) - (0.296 * S) - 15.8;
+    
+    //If index less than 1, before grade 1
+    if (i < 1)
+    {
+        printf("Before Grade 1\n");
+    }
+    //Else if index greater than 16, grade 16+
+    else if (i >= 16)
+    {
+        printf("Grade 16+\n");
+    }
+    //else prints grade
+    else
+    {
+        int g = round(i);
+        printf("Grade %i\n", g);
+    }
+}
+
+int count_letters(string s)
+{
+    int c = 0;
+    for (int i = 0, n = strlen(s); i < n; i++)
+    {
+        if (isalpha(s[i]))
+        {
+            c++;
+        }
+    }
+    return c;
+}
+
+int count_words(string s)
+{
+    int w = 0;
+    for (int i = 0, n = strlen(s); i < n; i++)
+    {
+        if (isspace(s[i]))
+        {
+            w++;
+        }
+    }
+    return w + 1;
+}
+
+int count_sentences(string s)
+{
+    int sent = 0;
+    for (int i = 0, n = strlen(s); i < n; i++)
+    {
+        if (s[i] == '.' || s[i] == '!' || s[i] == '?')
+        {
+            sent++;
+        }
+    }
+    return sent;
+}
+
+
+// Coleman-Liau index: 
+//L = average letters per 100 words
+//S = average sentences per 100 words
+//index = 0.0588 * L - 0.296 * S - 15.8
