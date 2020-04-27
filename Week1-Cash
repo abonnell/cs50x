@@ -1,3 +1,5 @@
+//Converts a dollar amount into the fewest number of coins needed to make change
+
 #include <stdio.h>
 #include <cs50.h>
 #include <math.h>
