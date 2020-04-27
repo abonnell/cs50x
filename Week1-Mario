@@ -1,3 +1,5 @@
+//Prompts user for an integer and prints a right-justified pyramid of defined height
+
 #include <cs50.h>
 #include <stdio.h>
 
