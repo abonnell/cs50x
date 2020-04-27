@@ -1,3 +1,5 @@
+//Caesar cipher that accepts a single numeric command line argument
+
 #include <stdio.h>
 #include <cs50.h>
 #include <ctype.h>
